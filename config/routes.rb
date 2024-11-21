@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   resource :session
   
-  resources :passwords
+  namespace :passwords do
+    get :edit
+    post :update
+  end
 
   namespace :reward do
     root to: "reward#menu"
