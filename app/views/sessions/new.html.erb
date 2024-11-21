@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "運営支援システム" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="d-flex flex-column vh-100">
+    <div class="header">
+      <div class="hstack d-flex">
+      </div>
+    </div>
+    <div class="container mb-auto p-2">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+
+      <h1>man10運営支援システム</h1>
+      <%= form_with url: session_path do |form| %>
+        <div class="login">
+          <div class="p-2">
+            <%= form.text_field :name, required: true, autofocus: true, autocomplete: "username", placeholder: "ユーザー名", value: params[:name], class: "form-control span4" %>
+          </div>
+          <div class="p-2">
+            <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "パスワード", maxlength: 72, class: "form-control span4" %>
+          </div>
+        </div>
+        <div class="p-2">
+          <%= form.submit "ログイン", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+      <br>
+    </div>
+    <div class="footer 100vw">
+      <div class="text mx-auto p-2">
+        © 2024 yusama
+      </div>
+    </div>
+  </body>
+</html>

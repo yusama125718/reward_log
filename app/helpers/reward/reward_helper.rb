@@ -1,0 +1,2 @@
+module Reward::RewardHelper
+end

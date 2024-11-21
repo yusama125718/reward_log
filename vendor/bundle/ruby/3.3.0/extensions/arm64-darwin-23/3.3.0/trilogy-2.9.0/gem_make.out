@@ -1,0 +1,23 @@
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/trilogy-2.9.0/ext/trilogy-ruby
+/Users/yusama/.rbenv/versions/3.3.6/bin/ruby extconf.rb
+checking for CRYPTO_malloc() in -lcrypto... yes
+checking for SSL_new() in -lssl... yes
+checking for rb_interned_str() in ruby.h... yes
+creating Makefile
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/trilogy-2.9.0/ext/trilogy-ruby
+make DESTDIR\= sitearchdir\=./.gem.20241120-43637-w5snn1 sitelibdir\=./.gem.20241120-43637-w5snn1 clean
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/trilogy-2.9.0/ext/trilogy-ruby
+make DESTDIR\= sitearchdir\=./.gem.20241120-43637-w5snn1 sitelibdir\=./.gem.20241120-43637-w5snn1
+compiling trilogy.c
+compiling cast.c
+compiling cext.c
+linking shared-object trilogy/cext.bundle
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/trilogy-2.9.0/ext/trilogy-ruby
+make DESTDIR\= sitearchdir\=./.gem.20241120-43637-w5snn1 sitelibdir\=./.gem.20241120-43637-w5snn1 install
+/usr/bin/install -c -m 0755 cext.bundle ./.gem.20241120-43637-w5snn1/trilogy
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/trilogy-2.9.0/ext/trilogy-ruby
+make DESTDIR\= sitearchdir\=./.gem.20241120-43637-w5snn1 sitelibdir\=./.gem.20241120-43637-w5snn1 clean

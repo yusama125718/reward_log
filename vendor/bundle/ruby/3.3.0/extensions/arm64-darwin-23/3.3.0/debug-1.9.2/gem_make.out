@@ -1,0 +1,19 @@
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/debug-1.9.2/ext/debug
+/Users/yusama/.rbenv/versions/3.3.6/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20241120-43637-5aabms sitelibdir\=./.gem.20241120-43637-5aabms clean
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20241120-43637-5aabms sitelibdir\=./.gem.20241120-43637-5aabms
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.bundle
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20241120-43637-5aabms sitelibdir\=./.gem.20241120-43637-5aabms install
+/usr/bin/install -c -m 0755 debug.bundle ./.gem.20241120-43637-5aabms/debug
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20241120-43637-5aabms sitelibdir\=./.gem.20241120-43637-5aabms clean

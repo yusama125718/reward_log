@@ -1,0 +1,24 @@
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/date-3.4.0/ext/date
+/Users/yusama/.rbenv/versions/3.3.6/bin/ruby extconf.rb
+checking for rb_category_warn()... yes
+checking for timezone in time.h with  -Werror... yes
+checking for altzone in time.h with  -Werror... no
+creating Makefile
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/date-3.4.0/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20241120-42320-whzmgc sitelibdir\=./.gem.20241120-42320-whzmgc clean
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/date-3.4.0/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20241120-42320-whzmgc sitelibdir\=./.gem.20241120-42320-whzmgc
+compiling date_core.c
+compiling date_parse.c
+compiling date_strftime.c
+compiling date_strptime.c
+linking shared-object date_core.bundle
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/date-3.4.0/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20241120-42320-whzmgc sitelibdir\=./.gem.20241120-42320-whzmgc install
+/usr/bin/install -c -m 0755 date_core.bundle ./.gem.20241120-42320-whzmgc
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/date-3.4.0/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20241120-42320-whzmgc sitelibdir\=./.gem.20241120-42320-whzmgc clean

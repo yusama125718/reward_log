@@ -1,0 +1,2 @@
+module Reward::MasterHelper
+end

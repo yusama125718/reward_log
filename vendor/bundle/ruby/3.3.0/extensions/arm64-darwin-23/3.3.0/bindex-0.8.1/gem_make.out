@@ -1,0 +1,18 @@
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/bindex-0.8.1/ext/skiptrace
+/Users/yusama/.rbenv/versions/3.3.6/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20241120-43637-bj288s sitelibdir\=./.gem.20241120-43637-bj288s clean
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20241120-43637-bj288s sitelibdir\=./.gem.20241120-43637-bj288s
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.bundle
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20241120-43637-bj288s sitelibdir\=./.gem.20241120-43637-bj288s install
+/usr/bin/install -c -m 0755 cruby.bundle ./.gem.20241120-43637-bj288s/skiptrace/internal
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20241120-43637-bj288s sitelibdir\=./.gem.20241120-43637-bj288s clean

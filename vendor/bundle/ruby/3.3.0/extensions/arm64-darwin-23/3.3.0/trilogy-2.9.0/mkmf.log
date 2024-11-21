@@ -1,0 +1,132 @@
+have_library: checking for CRYPTO_malloc() in -lcrypto... -------------------- yes
+
+DYLD_LIBRARY_PATH=.:/Users/yusama/.rbenv/versions/3.3.6/lib "clang -o conftest -I/Users/yusama/.rbenv/versions/3.3.6/include/ruby-3.3.0/arm64-darwin23 -I/Users/yusama/.rbenv/versions/3.3.6/include/ruby-3.3.0/ruby/backward -I/Users/yusama/.rbenv/versions/3.3.6/include/ruby-3.3.0 -I. -I/opt/homebrew/opt/openssl@3/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -fdeclspec -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wextra-tokens -Wdeprecated-declarations -Wdivision-by-zero -Wdiv-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wold-style-definition -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wmisleading-indentation -Wundef -fno-common -pipe -I /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/trilogy-2.9.0/ext/trilogy-ruby/inc -std=gnu99 -fvisibility=hidden conftest.c  -L. -L/Users/yusama/.rbenv/versions/3.3.6/lib -L/opt/homebrew/opt/openssl@3/lib -L. -fstack-protector-strong  -arch arm64   -lruby.3.3  -lpthread  "
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return !!argv[argc];
+6: }
+/* end */
+
+DYLD_LIBRARY_PATH=.:/Users/yusama/.rbenv/versions/3.3.6/lib "clang -o conftest -I/Users/yusama/.rbenv/versions/3.3.6/include/ruby-3.3.0/arm64-darwin23 -I/Users/yusama/.rbenv/versions/3.3.6/include/ruby-3.3.0/ruby/backward -I/Users/yusama/.rbenv/versions/3.3.6/include/ruby-3.3.0 -I. -I/opt/homebrew/opt/openssl@3/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -fdeclspec -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wextra-tokens -Wdeprecated-declarations -Wdivision-by-zero -Wdiv-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wold-style-definition -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wmisleading-indentation -Wundef -fno-common -pipe -I /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/trilogy-2.9.0/ext/trilogy-ruby/inc -std=gnu99 -fvisibility=hidden conftest.c  -L. -L/Users/yusama/.rbenv/versions/3.3.6/lib -L/opt/homebrew/opt/openssl@3/lib -L. -fstack-protector-strong  -arch arm64   -lruby.3.3 -lcrypto  -lpthread  "
+conftest.c:14:57: error: use of undeclared identifier 'CRYPTO_malloc'
+int t(void) { void ((*volatile p)()); p = (void ((*)()))CRYPTO_malloc; return !p; }
+                                                        ^
+1 error generated.
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return !!argv[argc];
+13: }
+14: int t(void) { void ((*volatile p)()); p = (void ((*)()))CRYPTO_malloc; return !p; }
+/* end */
+
+DYLD_LIBRARY_PATH=.:/Users/yusama/.rbenv/versions/3.3.6/lib "clang -o conftest -I/Users/yusama/.rbenv/versions/3.3.6/include/ruby-3.3.0/arm64-darwin23 -I/Users/yusama/.rbenv/versions/3.3.6/include/ruby-3.3.0/ruby/backward -I/Users/yusama/.rbenv/versions/3.3.6/include/ruby-3.3.0 -I. -I/opt/homebrew/opt/openssl@3/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -fdeclspec -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wextra-tokens -Wdeprecated-declarations -Wdivision-by-zero -Wdiv-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wold-style-definition -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wmisleading-indentation -Wundef -fno-common -pipe -I /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/trilogy-2.9.0/ext/trilogy-ruby/inc -std=gnu99 -fvisibility=hidden conftest.c  -L. -L/Users/yusama/.rbenv/versions/3.3.6/lib -L/opt/homebrew/opt/openssl@3/lib -L. -fstack-protector-strong  -arch arm64   -lruby.3.3 -lcrypto  -lpthread  "
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return !!argv[argc];
+13: }
+14: extern void CRYPTO_malloc();
+15: int t(void) { CRYPTO_malloc(); return 0; }
+/* end */
+
+--------------------
+
+have_library: checking for SSL_new() in -lssl... -------------------- yes
+
+DYLD_LIBRARY_PATH=.:/Users/yusama/.rbenv/versions/3.3.6/lib "clang -o conftest -I/Users/yusama/.rbenv/versions/3.3.6/include/ruby-3.3.0/arm64-darwin23 -I/Users/yusama/.rbenv/versions/3.3.6/include/ruby-3.3.0/ruby/backward -I/Users/yusama/.rbenv/versions/3.3.6/include/ruby-3.3.0 -I. -I/opt/homebrew/opt/openssl@3/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -fdeclspec -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wextra-tokens -Wdeprecated-declarations -Wdivision-by-zero -Wdiv-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wold-style-definition -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wmisleading-indentation -Wundef -fno-common -pipe -I /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/trilogy-2.9.0/ext/trilogy-ruby/inc -std=gnu99 -fvisibility=hidden conftest.c  -L. -L/Users/yusama/.rbenv/versions/3.3.6/lib -L/opt/homebrew/opt/openssl@3/lib -L. -fstack-protector-strong  -arch arm64  -lcrypto  -lruby.3.3 -lssl -lcrypto  -lpthread  "
+conftest.c:14:57: error: use of undeclared identifier 'SSL_new'
+int t(void) { void ((*volatile p)()); p = (void ((*)()))SSL_new; return !p; }
+                                                        ^
+1 error generated.
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return !!argv[argc];
+13: }
+14: int t(void) { void ((*volatile p)()); p = (void ((*)()))SSL_new; return !p; }
+/* end */
+
+DYLD_LIBRARY_PATH=.:/Users/yusama/.rbenv/versions/3.3.6/lib "clang -o conftest -I/Users/yusama/.rbenv/versions/3.3.6/include/ruby-3.3.0/arm64-darwin23 -I/Users/yusama/.rbenv/versions/3.3.6/include/ruby-3.3.0/ruby/backward -I/Users/yusama/.rbenv/versions/3.3.6/include/ruby-3.3.0 -I. -I/opt/homebrew/opt/openssl@3/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -fdeclspec -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wextra-tokens -Wdeprecated-declarations -Wdivision-by-zero -Wdiv-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wold-style-definition -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wmisleading-indentation -Wundef -fno-common -pipe -I /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/trilogy-2.9.0/ext/trilogy-ruby/inc -std=gnu99 -fvisibility=hidden conftest.c  -L. -L/Users/yusama/.rbenv/versions/3.3.6/lib -L/opt/homebrew/opt/openssl@3/lib -L. -fstack-protector-strong  -arch arm64  -lcrypto  -lruby.3.3 -lssl -lcrypto  -lpthread  "
+ld: warning: ignoring duplicate libraries: '-lcrypto'
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return !!argv[argc];
+13: }
+14: extern void SSL_new();
+15: int t(void) { SSL_new(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for rb_interned_str() in ruby.h... -------------------- yes
+
+DYLD_LIBRARY_PATH=.:/Users/yusama/.rbenv/versions/3.3.6/lib "clang -o conftest -I/Users/yusama/.rbenv/versions/3.3.6/include/ruby-3.3.0/arm64-darwin23 -I/Users/yusama/.rbenv/versions/3.3.6/include/ruby-3.3.0/ruby/backward -I/Users/yusama/.rbenv/versions/3.3.6/include/ruby-3.3.0 -I. -I/opt/homebrew/opt/openssl@3/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -fdeclspec -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wextra-tokens -Wdeprecated-declarations -Wdivision-by-zero -Wdiv-by-zero -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wshorten-64-to-32 -Wwrite-strings -Wold-style-definition -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wunused-variable -Wmisleading-indentation -Wundef -fno-common -pipe -I /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/trilogy-2.9.0/ext/trilogy-ruby/inc -std=gnu99 -fvisibility=hidden conftest.c  -L. -L/Users/yusama/.rbenv/versions/3.3.6/lib -L/opt/homebrew/opt/openssl@3/lib -L. -fstack-protector-strong  -arch arm64  -lssl -lcrypto  -lruby.3.3 -lssl -lcrypto  -lpthread  "
+ld: warning: ignoring duplicate libraries: '-lcrypto', '-lssl'
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <ruby.h>
+ 4: 
+ 5: /*top*/
+ 6: extern int t(void);
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     int (* volatile tp)(void)=(int (*)(void))&t;
+11:     printf("%d", (*tp)());
+12:   }
+13: 
+14:   return !!argv[argc];
+15: }
+16: int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_interned_str; return !p; }
+/* end */
+
+--------------------
+

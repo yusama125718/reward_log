@@ -1,0 +1,18 @@
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/stringio-3.1.2/ext/stringio
+/Users/yusama/.rbenv/versions/3.3.6/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/stringio-3.1.2/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20241120-42320-gq8sp5 sitelibdir\=./.gem.20241120-42320-gq8sp5 clean
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/stringio-3.1.2/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20241120-42320-gq8sp5 sitelibdir\=./.gem.20241120-42320-gq8sp5
+compiling stringio.c
+linking shared-object stringio.bundle
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/stringio-3.1.2/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20241120-42320-gq8sp5 sitelibdir\=./.gem.20241120-42320-gq8sp5 install
+/usr/bin/install -c -m 0755 stringio.bundle ./.gem.20241120-42320-gq8sp5
+
+current directory: /Users/yusama/Documents/GitHub/reward_log/vendor/bundle/ruby/3.3.0/gems/stringio-3.1.2/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20241120-42320-gq8sp5 sitelibdir\=./.gem.20241120-42320-gq8sp5 clean
