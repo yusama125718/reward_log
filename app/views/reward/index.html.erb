@@ -1,0 +1,24 @@
+<% content_for(:title) { '報酬参照システム' } %>
+<% content_for(:back_link) { link_to '←トップページへ戻る', root_path } %>
+
+<h1>報酬履歴一覧</h1>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <%= link_to "単価", reward_index_path, class: "nav-link #{"active" if action_name.eql?("index")}" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "仕事毎", job_index_reward_index_path, class: "nav-link #{"active" if action_name.eql?("job_index")}" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "コンテンツ毎", content_index_reward_index_path, class: "nav-link #{"active" if action_name.eql?("content_index")}" %>
+  </li>
+</ul>
+<div class="filter card p-3">
+  <%= render partial: "filter" %>
+</div>
+<div class="p-2">
+  <%= link_to "新規作成", new_reward_path, class: "btn btn-primary" %>
+</div>
+<div class="list p-2">
+  <%= render partial: "list", locals: { contents: @contents } %>
+</div>

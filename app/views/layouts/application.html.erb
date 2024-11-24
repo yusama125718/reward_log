@@ -17,27 +17,36 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="d-flex flex-column vh-100">
-    <div class="header">
-      <div class="d-flex flex-row">
+  <body class="container-fluid d-flex flex-column vh-100 vw-100">
+    <div class="header row justify-content-between vw-100">
+      <div class="hstack col-9">
         <div class="p-2"><%= link_to "トップページ", root_path %></div>
-        <div class="p-2"><%= link_to "報酬参照システム", reward_root_path %></div>
+        <% if is_gm? %>
+          <div class="p-2"><%= link_to "報酬参照システム", reward_index_path %></div>
+        <% end %>
+      </div>
+      <div class="hstack col-3 flex-row-reverse">
         <div class="p-2"><%= link_to "ログアウト", session_path, data: { turbo_method: :delete } %></div>
+        <div class="p-2"><%= link_to "ログイン中　#{@current_user.display}：#{@current_user.permission}", session_path, data: { turbo_method: :delete } %></div>
       </div>
     </div>
-    <div class="container mb-auto p-2">
+    <div class="back-link p-2">
+      <% if content_for?(:back_link) %>
+        <%= yield(:back_link) %>
+      <% end %>
+    </div>
+    <div class="main mb-auto p-2 px-md-5">
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
       <%= yield %>
     </div>
-    <div class="footer 100vw">
-      <div class="text mx-auto p-2">
+    <div class="footer vw-100">
+      <div class="text mx-auto">
         © 2024 yusama
       </div>
     </div>

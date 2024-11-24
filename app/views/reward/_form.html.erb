@@ -1,0 +1,62 @@
+<% if content.errors.any? %>
+  <div class="alert alert-warning">
+    <p>入力エラーがあります<p>
+    <% content.errors.each do |error| %>
+      <li><%= error.full_message %></li>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_with model: content, url: url, data: { turbo: false } do |f| %>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "タイトル", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.text_field :title, class: 'form-control', placeholder: 'タイトル' %>
+    </div>
+  </div>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "仕事名", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.collection_select :job_id, Job.all, :id, :name, { include_blank: "選択して下さい" }, { class: "form-select" } %>
+    </div>
+  </div>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "コンテンツ種別名", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.collection_select :content_type_id, ContentType.where(state: true), :id, :name, { include_blank: "選択して下さい" }, { class: "form-select" } %>
+    </div>
+  </div>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "支払額", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.number_field :amount, class: 'form-control', placeholder: 'Max' %>
+    </div>
+  </div>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "支払先", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.text_field :worker, class: 'form-control', placeholder: '支払先' %>
+    </div>
+  </div>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "処理日", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.date_field :confirm_date, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="p-2">
+    <%= f.submit '保存', class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,8 @@
+<% content_for(:title) { 'マスタ管理 - コンテンツ種別作成' } %>
+<% content_for(:back_link) { link_to '←一覧へ戻る', master_content_index_path } %>
+
+<h1>コンテンツ種別作成</h1>
+
+<div class="editform p-2">
+  <%= render partial: "form", locals: { content: @content, url: master_content_index_path } %>
+</div>

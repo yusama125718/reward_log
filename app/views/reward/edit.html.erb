@@ -1,0 +1,8 @@
+<% content_for(:title) { '報酬参照システム - 編集' } %>
+<% content_for(:back_link) { link_to '←一覧へ戻る', reward_index_path } %>
+
+<h1>報酬履歴編集</h1>
+
+<div class="editform p-2">
+  <%= render partial: "form", locals: { content: @content, url: reward_path(@content.id) } %>
+</div>

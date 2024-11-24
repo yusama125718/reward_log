@@ -1,0 +1,58 @@
+<%= search_form_for @q, url: master_job_index_path do |f| %>
+  <% if action_name.eql?("index") %>
+    <div class="row align-items-center p-2 g-3">
+      <div class="col-md-2">
+        <%= f.label "タイトル", class: "col-form-label" %>
+      </div>
+      <div class="col-md-3">
+        <%= f.search_field :title_cont, class: 'form-control', placeholder: 'タイトル' %>
+      </div>
+    </div>
+  <% end %>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "仕事名", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.collection_select :job_id, Job.all, :id, :name, { include_blank: "選択して下さい" }, { class: "form-select" } %>
+    </div>
+  </div>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "コンテンツ種別名", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.collection_select :content_type_id, ContentType.where(state: true), :id, :name, { include_blank: "選択して下さい" }, { class: "form-select" } %>
+    </div>
+  </div>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "支払額", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.number_field :amount_lteq, class: 'form-control', placeholder: 'Max' %>
+    </div>
+    <div class="col-md-1">
+      <p>〜<p>
+    </div>
+    <div class="col-md-3">
+      <%= f.number_field :amount_gteq, class: 'form-control', placeholder: 'Min' %>
+    </div>
+  </div>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "支払先", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.search_field :worker_cont, class: 'form-control', placeholder: '支払先' %>
+    </div>
+  </div>
+  <div class="row p-2">
+    <div class="col-md-1 p-1">
+      <%= f.submit '検索', class: 'btn btn-primary' %>
+    </div>
+    <div class="col-md-1 p-1">
+      <%= link_to '全件表示', master_job_index_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

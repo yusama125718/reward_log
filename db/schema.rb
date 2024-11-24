@@ -10,7 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_20_120419) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_24_034119) do
+  create_table "content_types", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "note"
+    t.boolean "state", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "jobs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reward_contents", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "job_id"
+    t.bigint "content_type_id"
+    t.bigint "user_id"
+    t.string "title", null: false
+    t.bigint "amount", default: 0
+    t.text "note"
+    t.date "confirm_date"
+    t.string "worker"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["content_type_id"], name: "index_reward_contents_on_content_type_id"
+    t.index ["job_id"], name: "index_reward_contents_on_job_id"
+    t.index ["user_id"], name: "index_reward_contents_on_user_id"
+  end
+
   create_table "sessions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "ip_address"
@@ -25,7 +56,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_20_120419) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "permission"
+    t.string "permission", null: false
+    t.string "display"
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 

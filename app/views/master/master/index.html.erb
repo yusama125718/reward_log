@@ -1,0 +1,16 @@
+<% content_for(:title) { 'マスタ管理' } %>
+<% content_for(:back_link) { link_to '←トップページへ戻る', root_path } %>
+
+<h1>マスタ管理</h1>
+<div>
+  <div class="card mb-2 button-card">
+    <a class="card-body" href="<%= master_job_index_path %>">
+      仕事区分
+    </a>
+  </div>
+  <div class="card mb-2 button-card">
+    <a class="card-body" href="<%= master_content_index_path %>">
+      コンテンツ区分
+    </a>
+  </div>
+</div>

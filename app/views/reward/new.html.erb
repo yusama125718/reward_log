@@ -1,0 +1,8 @@
+<% content_for(:title) { '報酬参照システム - 新規' } %>
+<% content_for(:back_link) { link_to '←一覧へ戻る', reward_index_path } %>
+
+<h1>コンテンツ種別作成</h1>
+
+<div class="editform p-2">
+  <%= render partial: "form", locals: { content: @content, url: reward_index_path } %>
+</div>

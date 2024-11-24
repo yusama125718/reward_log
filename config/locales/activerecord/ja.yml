@@ -1,0 +1,33 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              blank: を入力して下さい
+        reward_content:
+          attributes:
+            content_type:
+              required: を入力して下さい
+            job:
+              required: を入力して下さい
+    attributes:
+      user:
+        name: ログインID
+        display: 表示名
+        permission: 権限
+        password: パスワード
+        password_confirmation: パスワード確認
+      job:
+        name: 仕事名
+      content_type:
+        name: 種別名
+        state: 作業中
+      reward_content:
+        title: タイトル
+        job: 仕事名
+        content_type: コンテンツ種別
+        amount: 支払額
+        worker: 支払先
+        confirm_date: 処理日

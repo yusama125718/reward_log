@@ -8,11 +8,18 @@ Rails.application.routes.draw do
     post :update
   end
 
-  namespace :reward do
-    root to: "reward#menu"
-    resources :reward
-    resources :master
+  resources :reward do
+    collection  do
+      get :job_index
+      get :content_index
+    end
   end
 
-  resources :user
+  namespace :master do
+    root to: "master#index"
+    resources :job
+    resources :content
+  end
+
+  resources :users
 end

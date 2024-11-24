@@ -1,0 +1,36 @@
+<% if contents.empty? %>
+  <div class="alert alert-warning">
+    <p>表示できる要素がありません</p>
+  </div>
+<% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">処理日</th>
+        <th scope="col">タイトル</th>
+        <th scope="col">仕事種別</th>
+        <th scope="col">コンテンツ種別</th>
+        <th scope="col">支払先</th>
+        <th scope="col">支払額</th>
+        <th scope="col">作業者</th>
+        <th scope="col">編集</th>
+        <th scope="col">削除</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% contents.each do |content| %>
+        <tr class="align-middle">
+          <td><%= l content.confirm_date %></td>
+          <td><%= content.title %></td>
+          <td><%= content.job.try(:name) %></td>
+          <td><%= content.content_type.try(:name) %></td>
+          <td><%= content.worker %></td>
+          <td><%= content.amount.to_formatted_s(:delimited) %></td>
+          <td><%= content.user.try(:display) %></td>
+          <td><%= link_to "編集", edit_reward_path(content.id), class: "btn btn-outline-primary btn-sm" %></td>
+          <td><%= link_to "削除", reward_path(content.id), class: "btn btn-danger btn-sm", data: { turbo_method: :delete, turbo_confirm: "削除しますか？" } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

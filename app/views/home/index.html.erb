@@ -1,16 +1,27 @@
 <h1>man10運営支援アプリ</h1>
 <div>
-  <div class="card mb-2">
-    <a class="card-body" href="<%= reward_root_path %>">
-      報酬参照システム
-    </a>
-  </div>
-  <div class="card mb-2">
-    <a class="card-body" href="<%= user_index_path %>">
-      ユーザー管理
-    </a>
-  </div>
-  <div class="card mb-2">
+  <% if is_gm? %>
+    <div class="card mb-2 button-card">
+      <a class="card-body" href="<%= reward_index_path %>">
+        報酬参照システム
+      </a>
+    </div>
+  <% end %>
+  <% if is_admin? %>
+    <div class="card mb-2 button-card">
+      <a class="card-body" href="<%= users_path %>">
+        ユーザー管理
+      </a>
+    </div>
+  <% end %>
+  <% if is_gm? %>
+    <div class="card mb-2 button-card">
+      <a class="card-body" href="<%= master_root_path %>">
+        マスタ管理
+      </a>
+    </div>
+  <% end %>
+  <div class="card mb-2 button-card">
     <a class="card-body" href="<%= passwords_edit_path %>">
       パスワード変更
     </a>

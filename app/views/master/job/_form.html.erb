@@ -1,0 +1,30 @@
+<% if job.errors.any? %>
+  <div class="alert alert-warning">
+    <p>入力エラーがあります<p>
+    <% job.errors.each do |error| %>
+      <li><%= error.full_message %></li>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_with model: job, url: url, data: { turbo: false } do |f| %>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "仕事名", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.text_field :name, class: 'form-control', placeholder: '仕事名' %>
+    </div>
+  </div>
+  <div class="align-items-center p-2 g-3">
+    <div class="">
+      <%= f.label "メモ", class: "col-form-label" %>
+    </div>
+    <div class="">
+      <%= f.text_area :note, class: 'form-control', placeholder: 'メモ' %>
+    </div>
+  </div>
+  <div class="p-2">
+    <%= f.submit '保存', class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+<% content_for(:title) { 'マスタ管理 - コンテンツ種別' } %>
+<% content_for(:back_link) { link_to '←メニューへ戻る', master_root_path } %>
+
+<h1>コンテンツ種別一覧</h1>
+
+<div class="filter card p-3">
+  <%= render partial: "filter" %>
+</div>
+<div class="p-2">
+  <%= link_to "新規作成", new_master_content_path, class: "btn btn-primary" %>
+</div>
+<div class="list p-2">
+  <%= render partial: "list", locals: { contents: @contents } %>
+</div>
