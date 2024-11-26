@@ -13,6 +13,6 @@ class RewardContent < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    []
+    ["job", "content_type"]
   end
 end

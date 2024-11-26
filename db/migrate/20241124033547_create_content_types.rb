@@ -3,7 +3,6 @@ class CreateContentTypes < ActiveRecord::Migration[8.0]
     create_table :content_types do |t|
       t.string :name, null: false
       t.text :note
-      t.boolean :state, null: false, default: true
 
       t.timestamps
     end

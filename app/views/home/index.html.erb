@@ -6,6 +6,11 @@
         報酬参照システム
       </a>
     </div>
+    <div class="card mb-2 button-card">
+      <a class="card-body" href="<%= master_root_path %>">
+        マスタ管理
+      </a>
+    </div>
   <% end %>
   <% if is_admin? %>
     <div class="card mb-2 button-card">
@@ -14,16 +19,9 @@
       </a>
     </div>
   <% end %>
-  <% if is_gm? %>
-    <div class="card mb-2 button-card">
-      <a class="card-body" href="<%= master_root_path %>">
-        マスタ管理
-      </a>
-    </div>
-  <% end %>
   <div class="card mb-2 button-card">
     <a class="card-body" href="<%= passwords_edit_path %>">
-      パスワード変更
+      パスワード/ユーザー情報変更
     </a>
   </div>
 </div>

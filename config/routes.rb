@@ -12,6 +12,11 @@ Rails.application.routes.draw do
     collection  do
       get :job_index
       get :content_index
+
+      get :open_modal
+      get :set_modal_params
+      get :serch_content_type
+      get :serch_job
     end
   end
 

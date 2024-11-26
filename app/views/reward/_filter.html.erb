@@ -1,4 +1,4 @@
-<%= search_form_for @q, url: master_job_index_path do |f| %>
+<%= search_form_for @q, url: reward_index_path do |f| %>
   <% if action_name.eql?("index") %>
     <div class="row align-items-center p-2 g-3">
       <div class="col-md-2">
@@ -13,30 +13,54 @@
     <div class="col-md-2">
       <%= f.label "仕事名", class: "col-form-label" %>
     </div>
-    <div class="col-md-3">
-      <%= f.collection_select :job_id, Job.all, :id, :name, { include_blank: "選択して下さい" }, { class: "form-select" } %>
+    <div id="job-selector" class="col-md-5 row align-items-center g-2 px-2">
+      <div class="col-md-8">
+        <input class="form-control" placeholder="選択して下さい" type="text" value="<%= @select[:job] %>" disabled/>
+      </div>
+      <div class="col-md-2">
+        <%= link_to "選択", open_modal_reward_index_path(target: "job"), data: { turbo_stream: true }, class: "btn btn-primary" %>
+      </div>
+      <% if @select[:job] %>
+        <div class="col-md-2 px-2">
+          <%= link_to "解除", set_modal_params_reward_index_path(target: "job", value: ""), data: { turbo_stream: true }, class: "btn btn-danger" %>
+        </div>
+      <% end %>
     </div>
+    <%= f.hidden_field :job_id_eq %>
   </div>
   <div class="row align-items-center p-2 g-3">
     <div class="col-md-2">
       <%= f.label "コンテンツ種別名", class: "col-form-label" %>
     </div>
-    <div class="col-md-3">
-      <%= f.collection_select :content_type_id, ContentType.where(state: true), :id, :name, { include_blank: "選択して下さい" }, { class: "form-select" } %>
+    <div id="content_type-selector" class="col-md-5 row align-items-center g-2 px-2">
+      <div class="col-md-8">
+        <input class="form-control" placeholder="選択して下さい" type="text" value="<%= @select[:content_type] %>" disabled/>
+      </div>
+      <div class="col-md-2">
+        <%= link_to "選択", open_modal_reward_index_path(target: "content_type"), data: { turbo_stream: true }, class: "btn btn-primary" %>
+      </div>
+      <% if @select[:content_type] %>
+        <div class="col-md-2 px-2">
+          <%= link_to "解除", set_modal_params_reward_index_path(target: "content_type", value: ""), data: { turbo_stream: true }, class: "btn btn-danger" %>
+        </div>
+      <% end %>
     </div>
+    <%= f.hidden_field :content_type_id_eq %>
   </div>
   <div class="row align-items-center p-2 g-3">
     <div class="col-md-2">
       <%= f.label "支払額", class: "col-form-label" %>
     </div>
-    <div class="col-md-3">
-      <%= f.number_field :amount_lteq, class: 'form-control', placeholder: 'Max' %>
-    </div>
-    <div class="col-md-1">
-      <p>〜<p>
-    </div>
-    <div class="col-md-3">
-      <%= f.number_field :amount_gteq, class: 'form-control', placeholder: 'Min' %>
+    <div class="col-md-6 row align-items-center g-2 px-2">
+      <div class="col-md-5">
+        <%= f.number_field :amount_lteq, class: 'form-control', placeholder: 'Max' %>
+      </div>
+      <div class="col-md-1 align-middle px-3">
+        <p>〜<p>
+      </div>
+      <div class="col-md-5">
+        <%= f.number_field :amount_gteq, class: 'form-control', placeholder: 'Min' %>
+      </div>
     </div>
   </div>
   <div class="row align-items-center p-2 g-3">
@@ -51,8 +75,8 @@
     <div class="col-md-1 p-1">
       <%= f.submit '検索', class: 'btn btn-primary' %>
     </div>
-    <div class="col-md-1 p-1">
-      <%= link_to '全件表示', master_job_index_path, class: 'btn btn-primary' %>
+    <div class="col-md-2 p-1">
+      <%= link_to '全件表示', reward_index_path, class: 'btn btn-primary' %>
     </div>
   </div>
 <% end %>

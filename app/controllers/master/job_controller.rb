@@ -1,7 +1,10 @@
 class Master::JobController < ApplicationController
+  include Permission
+  before_action :require_gm
+  
   def index
     @q = Job.ransack(params[:q])
-    @jobs = @q.result.page(params[:page]).per(20)
+    @jobs = @q.result.page(params[:page])
   end
 
   def new
@@ -17,7 +20,8 @@ class Master::JobController < ApplicationController
     if @job.update(job_params)
       redirect_to master_job_index_path, flash: { success: "保存しました" }
     else
-      render :edit
+      @url = master_job_path(@job.id)
+      render :form_update, status: :unprocessable_entity
     end
   end
 
@@ -26,7 +30,8 @@ class Master::JobController < ApplicationController
     if @job.save
       redirect_to master_job_index_path, flash: { success: "作成しました" }
     else
-      render :new
+      @url = master_job_index_path
+      render :form_update, status: :unprocessable_entity
     end
   end
 

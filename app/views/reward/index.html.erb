@@ -6,10 +6,10 @@
   <li class="nav-item">
     <%= link_to "単価", reward_index_path, class: "nav-link #{"active" if action_name.eql?("index")}" %>
   </li>
-  <li class="nav-item">
+  <li class="nav-item d-none">
     <%= link_to "仕事毎", job_index_reward_index_path, class: "nav-link #{"active" if action_name.eql?("job_index")}" %>
   </li>
-  <li class="nav-item">
+  <li class="nav-item d-none">
     <%= link_to "コンテンツ毎", content_index_reward_index_path, class: "nav-link #{"active" if action_name.eql?("content_index")}" %>
   </li>
 </ul>

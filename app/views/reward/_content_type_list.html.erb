@@ -1,0 +1,27 @@
+<%= turbo_frame_tag 'content-list' do %>
+  <% if @content_types.empty? %>
+    <div class="alert alert-warning">
+      <p>表示できる要素がありません</p>
+    </div>
+  <% else %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">種別名</th>
+          <th scope="col">メモ</th>
+          <th scope="col">選択</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @content_types.each do |content| %>
+          <tr class="align-middle">
+            <td><%= content.name %></td>
+            <td><%= content.note.slice(0..29) %></td>
+            <td><%= link_to "選択", set_modal_params_reward_index_path(target: "content_type", value: content.id), data: { turbo_stream: true }, class: "btn btn-outline-primary btn-sm", onclick: "$('input').blur();" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate @content_types, param_name: "modal_page" %>
+  <% end %>
+<% end %>

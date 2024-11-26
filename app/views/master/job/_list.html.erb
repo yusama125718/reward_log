@@ -6,7 +6,6 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">id</th>
         <th scope="col">種別名</th>
         <th scope="col">メモ</th>
         <th scope="col">編集</th>
@@ -16,7 +15,6 @@
     <tbody>
       <% jobs.each do |job| %>
         <tr class="align-middle">
-          <td><%= job.id %></td>
           <td><%= job.name %></td>
           <td><%= job.note.slice(0..29) %></td>
           <td><%= link_to "編集", edit_master_job_path(job.id), class: "btn btn-outline-primary btn-sm" %></td>
@@ -25,4 +23,5 @@
       <% end %>
     </tbody>
   </table>
+  <%= paginate jobs %>
 <% end %>

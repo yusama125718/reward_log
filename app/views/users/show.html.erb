@@ -3,6 +3,6 @@
 
 <h1>ユーザー編集</h1>
 
-<div class="editform p-2">
+<div id="editform" class="p-2">
   <%= render partial: "form", locals: { user: @user, url: user_path(@user.id) } %>
 </div>

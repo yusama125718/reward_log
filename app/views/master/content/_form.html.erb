@@ -7,21 +7,13 @@
   </div>
 <% end %>
 
-<%= form_with model: content, url: url, data: { turbo: false } do |f| %>
+<%= form_with model: content, url: url do |f| %>
   <div class="row align-items-center p-2 g-3">
     <div class="col-md-2">
       <%= f.label "種別名", class: "col-form-label" %>
     </div>
     <div class="col-md-3">
       <%= f.text_field :name, class: 'form-control', placeholder: '種別名' %>
-    </div>
-  </div>
-  <div class="row align-items-center p-2 g-3">
-    <div class="col-md-2">
-      <%= f.label "作業中か", class: "col-form-label" %>
-    </div>
-    <div class="col-md-3">
-      <%= f.check_box :state, { checked: content.state, class: 'form-checkbox' }, true, false %>
     </div>
   </div>
   <div class="align-items-center p-2 g-3">

@@ -1,7 +1,10 @@
 class Master::ContentController < ApplicationController
+  include Permission
+  before_action :require_gm
+  
   def index
     @q = ContentType.ransack(params[:q])
-    @contents = @q.result.page(params[:page]).per(20)
+    @contents = @q.result.page(params[:page])
   end
 
   def new
@@ -13,28 +16,22 @@ class Master::ContentController < ApplicationController
   end
 
   def update
-    p = content_params
-    if p[:state].blank?
-      p[:state] = false
-    end
     @content = ContentType.find_by(id: params[:id])
-    if @content.update(p)
+    if @content.update(content_params)
       redirect_to master_content_index_path, flash: { success: "保存しました" }
     else
-      render :edit
+      @url = master_content_path(@content.id)
+      render :form_update, status: :unprocessable_entity
     end
   end
 
   def create
-    p = content_params
-    if p[:state].blank?
-      p[:state] = false
-    end
-    @content = ContentType.new(p)
+    @content = ContentType.new(content_params)
     if @content.save
       redirect_to master_content_index_path, flash: { success: "作成しました" }
     else
-      render :new
+      @url = master_content_index_path
+      render :form_update, status: :unprocessable_entity
     end
   end
 

@@ -7,7 +7,7 @@
   </div>
 <% end %>
 
-<%= form_with model: job, url: url, data: { turbo: false } do |f| %>
+<%= form_with model: job, url: url do |f| %>
   <div class="row align-items-center p-2 g-3">
     <div class="col-md-2">
       <%= f.label "仕事名", class: "col-form-label" %>

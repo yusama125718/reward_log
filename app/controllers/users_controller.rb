@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @q = User.ransack(params[:q])
-    @users = @q.result.page(params[:page]).per(20)
+    @users = @q.result.page(params[:page])
   end
 
   def show
@@ -20,7 +20,8 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to users_path, flash: { success: "作成しました" }
     else
-      render :new
+      @url = users_path
+      render :form_update, status: :unprocessable_entity
     end
   end
 
@@ -28,13 +29,15 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     if @user.permission == "admin" && User.where(permission: "admin").count == 1 && !params[:permission].eql?("admin")
       flash.now[:warning] = "admin権限は0名にできません"
-      render :show
+      @url = user_path(@user.id)
+      render :form_update, status: :unprocessable_entity
       return
     end
     if @user.update(user_params)
       redirect_to users_path, flash: { success: "保存しました" }
     else
-      render :show
+      @url = user_path(@user.id)
+      render :form_update, status: :unprocessable_entity
     end
   end
 
