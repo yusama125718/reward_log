@@ -5,12 +5,12 @@
     "@popperjs/core": "^2.11.4",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.8.1",
-    "esbuild": "^0.14.30",
+    "esbuild": "^0.24.0",
     "jquery": "^3.7.1",
     "sass": "^1.49.11"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
     "build:css": "sass ./app/assets/stylesheets/application.bootstrap.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   },
   "browserslist": [
