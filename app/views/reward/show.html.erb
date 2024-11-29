@@ -1,0 +1,54 @@
+<% content_for(:title) { '報酬参照システム - 詳細' } %>
+<% content_for(:back_link) { link_to '←一覧へ戻る', reward_index_path } %>
+
+<h1>報酬履歴詳細</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+    <th scope="col"></th>
+      <th scope="col">項目</th>
+      <th scope="col">値</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>タイトル</td>
+      <td><%= @content.title %></td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>仕事種別</td>
+      <td><%= @content.job.try(:name) %></td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>コンテンツ種別</td>
+      <td><%= @content.content_type.try(:name) %></td>
+    </tr>
+    <tr>
+      <th scope="row">4</th>
+      <td>支払先</td>
+      <td><%= @content.worker %></td>
+    </tr>
+    <tr>
+      <th scope="row">5</th>
+      <td>支払額</td>
+      <td><%= @content.amount.to_formatted_s(:delimited) %></td>
+    </tr>
+    <tr>
+      <th scope="row">6</th>
+      <td>作業者</td>
+      <td><%= @content.user.display %></td>
+    </tr>
+    <tr>
+      <th scope="row">7</th>
+      <td>メモ</td>
+      <td><%= @content.note %></td>
+    </tr>
+  </tbody>
+</table>
+<div class="align-items-center">
+  <%= link_to "編集", edit_reward_path(@content.id), class: "btn btn-primary" %>
+</div>

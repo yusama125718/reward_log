@@ -78,6 +78,14 @@
       <%= f.date_field :confirm_date, value: Time.zone.today, class: 'form-control' %>
     </div>
   </div>
+  <div class="align-items-center p-2 g-3">
+    <div class="">
+      <%= f.label "メモ", class: "col-form-label" %>
+    </div>
+    <div class="">
+      <%= f.text_area :note, class: 'form-control', placeholder: 'メモ' %>
+    </div>
+  </div>
   <div class="p-2">
     <%= f.submit '保存', class: 'btn btn-primary' %>
   </div>

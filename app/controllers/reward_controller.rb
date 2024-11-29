@@ -1,4 +1,5 @@
 class RewardController < ApplicationController
+  require "net/http"
   include Permission
   before_action :require_gm
 
@@ -43,11 +44,23 @@ class RewardController < ApplicationController
     end
   end
 
+  def show
+    @content = RewardContent.find_by(id: params[:id])
+  end
+
   def create
     p = content_params
     p[:user_id] = @current_user.id
     @content = RewardContent.new(p)
     if @content.save
+      params = { content: "#{@current_user.display}が新しい報酬を登録しました。¥n
+                          #{p.title}¥n
+                          #{p.worker}：#{amount.to_formatted_s(:delimited)}" }
+      uri = URI.parse(Settings.reward.webhook)
+      response = Net::HTTP.post_form(uri, params)
+
+      Rails.logger.info(response.code)
+      Rails.logger.info(response.body)
       redirect_to reward_index_path, flash: { success: "作成しました" }
     else
       get_input_select(params[:reward_content])

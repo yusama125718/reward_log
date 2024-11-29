@@ -21,7 +21,7 @@
       <% contents.each do |content| %>
         <tr class="align-middle">
           <td><%= l content.confirm_date %></td>
-          <td><%= content.title %></td>
+          <td><%= link_to content.title, reward_path(id: content.id) %></td>
           <td><%= content.job.try(:name) %></td>
           <td><%= content.content_type.try(:name) %></td>
           <td><%= content.worker %></td>
