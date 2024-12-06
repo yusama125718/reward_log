@@ -1,24 +1,13 @@
-# README
+## 動かし方
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* yarnが必須です。入れてね。
+* settings.ymlとdatabase.ymlを作ってね。mysqlのアダプターはtrilogyだよ
+* credentials.yml.encを削除してEDITOR=vi bundle exec rails credentials:editを実行してね
+* あとはプリコンパイルしたりパッケージ入れたりすればうまくいくと思うよ
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+settings.ymlについて
+サンプル
+```
+reward:
+  webhook: [webhookのURL]  # 報酬履歴作成時に送信されるよ
+```

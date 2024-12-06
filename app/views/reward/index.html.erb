@@ -4,13 +4,13 @@
 <h1>報酬履歴一覧</h1>
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <%= link_to "単価", reward_index_path, class: "nav-link #{"active" if action_name.eql?("index")}" %>
+    <%= link_to "単価", reward_index_path, class: "nav-link active" %>
   </li>
-  <li class="nav-item d-none">
-    <%= link_to "仕事毎", job_index_reward_index_path, class: "nav-link #{"active" if action_name.eql?("job_index")}" %>
+  <li class="nav-item">
+    <%= link_to "仕事毎", job_index_reward_index_path, class: "nav-link" %>
   </li>
-  <li class="nav-item d-none">
-    <%= link_to "コンテンツ毎", content_index_reward_index_path, class: "nav-link #{"active" if action_name.eql?("content_index")}" %>
+  <li class="nav-item">
+    <%= link_to "コンテンツ毎", content_index_reward_index_path, class: "nav-link" %>
   </li>
 </ul>
 <div class="filter card p-3">
@@ -19,6 +19,6 @@
 <div class="p-2">
   <%= link_to "新規作成", new_reward_path, class: "btn btn-primary" %>
 </div>
-<div class="list p-2">
+<div id="reward-list" class="list p-2">
   <%= render partial: "list", locals: { contents: @contents } %>
 </div>

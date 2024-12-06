@@ -1,0 +1,14 @@
+<% content_for(:title) { 'マスタ管理 - ディスプレイ種別' } %>
+<% content_for(:back_link) { link_to '←メニューへ戻る', master_root_path } %>
+
+<h1>ディスプレイ種別一覧</h1>
+
+<div class="filter card p-3">
+  <%= render partial: "filter" %>
+</div>
+<div class="p-2">
+  <%= link_to "新規作成", new_master_display_path, class: "btn btn-primary" %>
+</div>
+<div id="content-list" class="list p-2">
+  <%= render partial: "list", locals: { displays: @displays } %>
+</div>

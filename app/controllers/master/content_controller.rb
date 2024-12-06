@@ -1,8 +1,13 @@
 class Master::ContentController < ApplicationController
   include Permission
   before_action :require_gm
-  
+
   def index
+    @q = ContentType.ransack(params[:q])
+    @contents = @q.result.page(params[:page])
+  end
+
+  def paginate
     @q = ContentType.ransack(params[:q])
     @contents = @q.result.page(params[:page])
   end

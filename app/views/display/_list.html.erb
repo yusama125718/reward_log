@@ -1,0 +1,33 @@
+<% if displays.empty? %>
+  <div class="alert alert-warning">
+    <p>表示できる要素がありません</p>
+  </div>
+<% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ファイル名</th>
+        <th scope="col">オプション</th>
+        <th scope="col">ソート順</th>
+        <th scope="col">表示時間</th>
+        <th scope="col">表示期限</th>
+        <th scope="col">編集</th>
+        <th scope="col">削除</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% displays.each do |display| %>
+        <tr class="align-middle">
+          <td><%= link_to display.filename, display_path(display.id) %></td>
+          <td><%= display.option %></td>
+          <td><%= display.sort %></td>
+          <td><%= display.time %></td>
+          <td><%= display.limit ? (l display.limit) : "" %></td>
+          <td><%= link_to "編集", edit_display_path(display.id), class: "btn btn-outline-primary btn-sm" %></td>
+          <td><%= link_to "削除", display_path(display.id), class: "btn btn-danger btn-sm", data: { turbo_method: :delete, turbo_confirm: "削除しますか？" } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate displays, action: "paginate" %>
+<% end %>

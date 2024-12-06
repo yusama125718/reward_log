@@ -6,19 +6,22 @@ class RewardController < ApplicationController
   def index
     get_select(params[:q])
     @q = RewardContent.ransack(params[:q])
-    @contents = @q.result.page(params[:page])
+    @contents = @q.result.preload(:job, :content_type, :user).page(params[:page])
   end
 
   def job_index
-    @q = RewardContent.ransack(params[:q])
-    @contents = @q.result.select("reward_contents.*, SUM(amount) AS amount_sum").group(:job_id).page(params[:page])
-    render :index
+    @q = Job.ransack(params[:q])
+    @contents = @q.result.select("jobs.id, jobs.name, (SELECT SUM(amount) FROM reward_contents WHERE job_id = jobs.id) AS amount, (SELECT COUNT(*) FROM reward_contents WHERE job_id = jobs.id) AS records_count").page(params[:page])
   end
 
   def content_index
+    @q = ContentType.ransack(params[:q])
+    @contents = @q.result.select("content_types.id, content_types.name, (SELECT SUM(amount) FROM reward_contents WHERE content_type_id = content_types.id) AS amount, (SELECT COUNT(*) FROM reward_contents WHERE content_type_id = content_types.id) AS records_count").page(params[:page])
+  end
+
+  def paginate
     @q = RewardContent.ransack(params[:q])
-    @contents = @q.result.group(:content_type_id).sum(:amount).page(params[:page])
-    render :index
+    @contents = @q.result.page(params[:page])
   end
 
   def new
@@ -53,17 +56,19 @@ class RewardController < ApplicationController
     p[:user_id] = @current_user.id
     @content = RewardContent.new(p)
     if @content.save
-      params = { content: "#{@current_user.display}が新しい報酬を登録しました。¥n
-                          #{p.title}¥n
-                          #{p.worker}：#{amount.to_formatted_s(:delimited)}" }
-      uri = URI.parse(Settings.reward.webhook)
-      response = Net::HTTP.post_form(uri, params)
+      if Settings.try(:reward).try(:webhook)
+        params = { content: "#{@current_user.display}が新しい報酬を登録しました。\n"+
+                            "```#{p[:title]}\n"+
+                            "#{p[:worker]}：#{p[:amount].to_i.to_formatted_s(:delimited)}```" }
+        uri = URI.parse(Settings.reward.webhook)
+        response = Net::HTTP.post_form(uri, params)
 
-      Rails.logger.info(response.code)
-      Rails.logger.info(response.body)
+        Rails.logger.info(response.code)
+        Rails.logger.info(response.body)
+      end
       redirect_to reward_index_path, flash: { success: "作成しました" }
     else
-      get_input_select(params[:reward_content])
+      get_input_select(params.try(:reward_content))
       @url = reward_index_path
       render :new, status: :unprocessable_entity
     end
@@ -116,23 +121,23 @@ class RewardController < ApplicationController
 
   private
 
-  def get_select(p)
+  def get_select(prm)
     @select = {}
-    if p
-      @select[:job] = Job.find_by(id: p[:job_id_eq]).name unless p[:job_id_eq].blank?
-      @select[:content_type] = ContentType.find_by(id: p[:content_type_id_eq]).name unless p[:content_type_id_eq].blank?
+    if prm
+      @select[:job] = Job.find_by(id: prm[:job_id_eq]).name unless prm[:job_id_eq].blank?
+      @select[:content_type] = ContentType.find_by(id: prm[:content_type_id_eq]).name unless prm[:content_type_id_eq].blank?
     end
   end
 
-  def get_input_select(p)
+  def get_input_select(prm)
     @select = {}
-    if p
-      @select[:job] = Job.find_by(id: p[:job_id]).name unless p[:job_id].blank?
-      @select[:content_type] = ContentType.find_by(id: p[:content_type_id]).name unless p[:content_type_id].blank?
+    if prm
+      @select[:job] = Job.find_by(id: prm[:job_id]).name unless prm[:job_id].blank?
+      @select[:content_type] = ContentType.find_by(id: prm[:content_type_id]).name unless prm[:content_type_id].blank?
     end
   end
 
   def content_params
-    params.require(:reward_content).permit(:title, :amount, :note, :confirm_date, :jobs_id, :content_type_id, :worker, :job_id)
+    params.require(:reward_content).permit(:title, :amount, :note, :confirm_date, :content_type_id, :worker, :job_id)
   end
 end

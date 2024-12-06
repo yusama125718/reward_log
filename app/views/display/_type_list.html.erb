@@ -1,0 +1,27 @@
+<% if @types.empty? %>
+  <div class="alert alert-warning">
+    <p>表示できる要素がありません</p>
+  </div>
+<% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">名称</th>
+        <th scope="col">権限</th>
+        <th scope="col">送信先パス</th>
+        <th scope="col">選択</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @types.each do |type| %>
+        <tr class="align-middle">
+          <td><%= type.name %></td>
+          <td><%= type.permission %></td>
+          <td><%= type.target_path %></td>
+          <td><%= link_to "選択", set_modal_params_display_index_path(value: type.id), data: { turbo_stream: true }, class: "btn btn-outline-primary btn-sm", onclick: "$('input').blur();" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @types, param_name: "modal_page", params: { action: 'serch_type' } %>
+<% end %>

@@ -1,0 +1,46 @@
+<% if display.errors.any? %>
+  <div class="alert alert-warning">
+    <p>入力エラーがあります<p>
+    <% display.errors.each do |error| %>
+      <li><%= error.full_message %></li>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_with model: display, url: url do |f| %>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "ディスプレイ名", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.text_field :name, class: 'form-control', placeholder: 'ディスプレイ名' %>
+    </div>
+  </div>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "送信先パス", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.text_field :target_path, class: 'form-control', placeholder: '送信先パス' %>
+    </div>
+  </div>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "権限", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.select :permission, options_for_select(get_permission_select), { include_blank: true }, { class: "form-select" } %>
+    </div>
+  </div>
+  <div class="align-items-center p-2 g-3">
+    <div class="">
+      <%= f.label "メモ", class: "col-form-label" %>
+    </div>
+    <div class="">
+      <%= f.text_area :note, class: 'form-control', placeholder: 'メモ' %>
+    </div>
+  </div>
+  <div class="p-2">
+    <%= f.submit '保存', class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -6,6 +6,11 @@ class Master::JobController < ApplicationController
     @q = Job.ransack(params[:q])
     @jobs = @q.result.page(params[:page])
   end
+  
+  def paginate
+    @q = Job.ransack(params[:q])
+    @jobs = @q.result.page(params[:page])
+  end
 
   def new
     @job = Job.new()

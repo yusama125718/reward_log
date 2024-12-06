@@ -1,0 +1,8 @@
+<% content_for(:title) { 'マスタ管理 - ディスプレイ種別編集' } %>
+<% content_for(:back_link) { link_to '←一覧へ戻る', master_display_index_path } %>
+
+<h1>ディスプレイ種別編集</h1>
+
+<div id="editform" class="p-2">
+  <%= render partial: "form", locals: { display: @display, url: master_display_path(@display.id) } %>
+</div>

@@ -10,12 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_24_034119) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_29_105623) do
   create_table "content_types", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "display_types", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "target_path"
+    t.string "permission"
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "displays", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "display_type_id"
+    t.bigint "user_id"
+    t.string "note"
+    t.string "filetype"
+    t.string "filename"
+    t.string "option"
+    t.float "time", default: 20.0, null: false
+    t.date "limit"
+    t.integer "sort"
+    t.boolean "archive", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["display_type_id"], name: "index_displays_on_display_type_id"
+    t.index ["user_id"], name: "index_displays_on_user_id"
   end
 
   create_table "jobs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

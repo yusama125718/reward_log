@@ -1,0 +1,25 @@
+<% if contents.empty? %>
+  <div class="alert alert-warning">
+    <p>表示できる要素がありません</p>
+  </div>
+<% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">種別名</th>
+        <th scope="col">支払総額</th>
+        <th scope="col">レコード数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% contents.each do |content| %>
+        <tr class="align-middle">
+          <td><%= content.name %></td>
+          <td><%= content.amount ? content.amount.to_formatted_s(:delimited) : 0 %></td>
+          <td><%= content.records_count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate contents %>
+<% end %>

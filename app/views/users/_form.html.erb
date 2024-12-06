@@ -29,7 +29,7 @@
       <%= f.label "権限", class: "col-form-label" %>
     </div>
     <div class="col-md-3">
-      <%= f.select :permission, options_for_select([["Admin", "admin"], ["GM", "gm"], ["Helper", "helper"]], selected: @user.permission), { include_blank: true }, { class: "form-select" } %>
+      <%= f.select :permission, options_for_select(get_permission_select, selected: @user.permission), { include_blank: true }, { class: "form-select" } %>
     </div>
   </div>
   <div class="row align-items-center p-2 g-3">

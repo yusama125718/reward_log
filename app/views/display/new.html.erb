@@ -1,0 +1,8 @@
+<% content_for(:title) { 'ディスプレイ - ディスプレイ画像作成' } %>
+<% content_for(:back_link) { link_to '←一覧へ戻る', display_index_path } %>
+
+<h1>ディスプレイ画像作成</h1>
+
+<div id="editform" class="p-2">
+  <%= render partial: "form", locals: { display: @display, url: display_index_path } %>
+</div>

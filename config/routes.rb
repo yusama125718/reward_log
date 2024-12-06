@@ -17,14 +17,45 @@ Rails.application.routes.draw do
       get :set_modal_params
       get :serch_content_type
       get :serch_job
+      get :paginate
     end
   end
 
   namespace :master do
     root to: "master#index"
-    resources :job
-    resources :content
+    resources :job do
+      collection do
+        get :paginate
+      end
+    end
+    resources :content do
+      collection do
+        get :paginate
+      end
+    end
+    resources :display do
+      collection do
+        get :paginate
+      end
+    end
   end
 
-  resources :users
+  resources :users do
+    collection do
+      get :paginate
+    end
+  end
+
+  resources :display do
+    member do
+      get :show_image
+      get :download
+    end
+    collection  do
+      get :open_modal
+      get :set_modal_params
+      get :serch_type
+      get :paginate
+    end
+  end
 end

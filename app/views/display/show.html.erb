@@ -1,0 +1,62 @@
+<% content_for(:title) { 'ディスプレイ - ディスプレイ画像詳細' } %>
+<% content_for(:back_link) { link_to '←一覧へ戻る', display_index_path } %>
+
+<h1>ディスプレイ画像詳細</h1>
+
+<div>
+  <div class="mx-auto display-image">
+    <%= image_tag show_image_display_path(@display), class: "d-block img-fluid" %>
+    <%= link_to "ダウンロード", download_display_path, class: "m-2 btn btn-primary" %>
+  </div>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+        <th scope="col"></th>
+          <th scope="col">項目</th>
+          <th scope="col">値</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>ファイル名</td>
+          <td><%= @display.filename %></td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>オプション</td>
+          <td><%= @display.option %></td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>掲載期限</td>
+          <td><%= @display.limit ? (l @display.limit) : "" %></td>
+        </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>ソート</td>
+          <td><%= @display.sort %></td>
+        </tr>
+        <tr>
+          <th scope="row">5</th>
+          <td>表示時間</td>
+          <td><%= @display.time %></td>
+        </tr>
+        <tr>
+          <th scope="row">6</th>
+          <td>最終更新者</td>
+          <td><%= @display.user.display %></td>
+        </tr>
+        <tr>
+          <th scope="row">7</th>
+          <td>メモ</td>
+          <td><%= @display.note %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="align-items-center">
+      <%= link_to "編集", edit_display_path(@display.id), class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<%= search_form_for @q, url: master_display_index_path do |f| %>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "ディスプレイ名", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.search_field :name_cont, class: 'form-control', placeholder: 'ディスプレイ名' %>
+    </div>
+  </div>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "権限", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.select :permission_eq, options_for_select([["Admin", "admin"], ["GM", "gm"], ["Helper", "helper"]]), { include_blank: true }, { class: "form-select" } %>
+    </div>
+  </div>
+  <div class="row p-2">
+    <div class="col-md-1 p-1">
+      <%= f.submit '検索', class: 'btn btn-primary' %>
+    </div>
+    <div class="col-md-2 p-1">
+      <%= link_to '全件表示', master_display_index_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

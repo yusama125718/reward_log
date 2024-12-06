@@ -6,6 +6,13 @@
         報酬参照システム
       </a>
     </div>
+  <% end %>
+  <div class="card mb-2 button-card">
+    <a class="card-body" href="<%= display_index_path %>">
+      ディスプレイ画像編集システム
+    </a>
+  </div>
+  <% if is_gm? %>
     <div class="card mb-2 button-card">
       <a class="card-body" href="<%= master_root_path %>">
         マスタ管理

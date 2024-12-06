@@ -1,0 +1,37 @@
+<%= search_form_for @q, url: master_display_index_path do |f| %>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "ファイル名", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.search_field :filename_cont, class: 'form-control', placeholder: 'ファイル名' %>
+    </div>
+  </div>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "ディスプレイ種別", class: "col-form-label" %>
+    </div>
+    <div id="job-selector" class="col-md-5 row align-items-center g-2 px-2">
+      <div class="col-md-8">
+        <input class="form-control" placeholder="選択して下さい" type="text" value="<%= @select[:job] %>" disabled/>
+      </div>
+      <div class="col-md-2">
+        <%= link_to "選択", open_modal_display_index_path, data: { turbo_stream: true }, class: "btn btn-primary" %>
+      </div>
+      <% if @select[:job] %>
+        <div class="col-md-2 px-2">
+          <%= link_to "解除", set_modal_params_display_index_path(value: ""), data: { turbo_stream: true }, class: "btn btn-danger" %>
+        </div>
+      <% end %>
+    </div>
+    <%= f.hidden_field :display_type_id_eq %>
+  </div>
+  <div class="row p-2">
+    <div class="col-md-1 p-1">
+      <%= f.submit '検索', class: 'btn btn-primary' %>
+    </div>
+    <div class="col-md-2 p-1">
+      <%= link_to '全件表示', master_display_index_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

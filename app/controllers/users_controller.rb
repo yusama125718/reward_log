@@ -7,6 +7,11 @@ class UsersController < ApplicationController
     @users = @q.result.page(params[:page])
   end
 
+  def paginate
+    @q = User.ransack(params[:q])
+    @users = @q.result.page(params[:page])
+  end
+
   def show
     @user = User.find_by(id: params[:id])
   end

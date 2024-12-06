@@ -3,7 +3,7 @@ class Job < ApplicationRecord
 
   validates :name, presence: { message: 'を入力してください' }
   validates :name, length: { maximum: 20, message: '：20文字以内で入力して下さい' }
-  validates :note, length: { maximum: 300, message: '：20文字以内で入力して下さい' }
+  validates :note, length: { maximum: 300, message: '：300文字以内で入力して下さい' }
   validates :name, uniqueness: {message: '：すでに存在している仕事名です'}
 
   def self.ransackable_attributes(auth_object = nil)

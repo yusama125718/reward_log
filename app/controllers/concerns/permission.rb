@@ -9,16 +9,24 @@ module Permission
   end
 
   def require_admin
-    allow_permissions = ["admin"]
-    unless allow_permissions.include?(@current_user.permission)
+    unless is_admin?
       redirect_to root_path, flash: { warning: "権限がありません" }
     end
   end
 
   def require_gm
-    allow_permissions = ["admin", "gm"]
-    unless allow_permissions.include?(@current_user.permission)
+    unless is_gm?
       redirect_to root_path, flash: { warning: "権限がありません" }
     end
+  end
+
+  def is_admin?
+    allow_permissions = ["admin"]
+    return allow_permissions.include?(@current_user.permission)
+  end
+
+  def is_gm?
+    allow_permissions = ["admin", "gm"]
+    return allow_permissions.include?(@current_user.permission)
   end
 end

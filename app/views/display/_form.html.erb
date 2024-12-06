@@ -1,0 +1,81 @@
+<% if display.errors.any? %>
+  <div class="alert alert-warning">
+    <p>入力エラーがあります<p>
+    <% display.errors.each do |error| %>
+      <li><%= error.full_message %></li>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_with model: display, url: url do |f| %>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "ディスプレイ種別", class: "col-form-label" %>
+    </div>
+    <div id="display_type-selector" class="col-md-5 row align-items-center g-2 px-2">
+      <div class="col-md-8">
+        <input class="form-control" placeholder="選択して下さい" type="text" value="<%= @select[:display_type] %>" disabled/>
+      </div>
+      <div class="col-md-2">
+        <%= link_to "選択", open_modal_display_index_path, data: { turbo_stream: true }, class: "btn btn-primary" %>
+      </div>
+      <% if @select[:display_type] %>
+        <div class="col-md-2 px-2">
+          <%= link_to "解除", set_modal_params_display_index_path(value: ""), data: { turbo_stream: true }, class: "btn btn-danger" %>
+        </div>
+      <% end %>
+    </div>
+    <%= f.hidden_field :display_type_id %>
+  </div>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "オプション", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.text_field :option, class: 'form-control', placeholder: 'オプション' %>
+    </div>
+  </div>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "表示時間", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.number_field :time, class: 'form-control', placeholder: 'Max' %>
+    </div>
+  </div>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "ソート", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.number_field :sort, class: 'form-control', placeholder: 'ソート', value: 1 %>
+    </div>
+  </div>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "画像ファイル", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.file_field :upload_file, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="row align-items-center p-2 g-3">
+    <div class="col-md-2">
+      <%= f.label "有効期限※空白で無期限", class: "col-form-label" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.date_field :limit, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="align-items-center p-2 g-3">
+    <div class="">
+      <%= f.label "メモ", class: "col-form-label" %>
+    </div>
+    <div class="">
+      <%= f.text_area :note, class: 'form-control', placeholder: 'メモ' %>
+    </div>
+  </div>
+  <div class="p-2">
+    <%= f.submit '保存', class: 'btn btn-primary' %>
+  </div>
+<% end %>

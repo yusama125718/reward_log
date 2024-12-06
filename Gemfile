@@ -71,3 +71,5 @@ gem 'sprockets-rails'
 
 gem 'jsbundling-rails'
 gem 'cssbundling-rails'
+
+gem 'config'

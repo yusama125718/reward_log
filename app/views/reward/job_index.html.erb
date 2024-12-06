@@ -1,0 +1,41 @@
+<% content_for(:title) { '報酬参照システム' } %>
+<% content_for(:back_link) { link_to '←トップページへ戻る', root_path } %>
+
+<h1>報酬履歴一覧</h1>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <%= link_to "単価", reward_index_path, class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "仕事毎", job_index_reward_index_path, class: "nav-link active" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "コンテンツ毎", content_index_reward_index_path, class: "nav-link" %>
+  </li>
+</ul>
+<div class="filter card p-3">
+  <%= search_form_for @q, url: job_index_reward_index_path do |f| %>
+    <div class="row align-items-center p-2 g-3">
+      <div class="col-md-2">
+        <%= f.label "仕事名", class: "col-form-label" %>
+      </div>
+      <div class="col-md-3">
+        <%= f.search_field :name_cont, class: 'form-control', placeholder: '仕事名' %>
+      </div>
+    </div>
+    <div class="row p-2">
+      <div class="col-md-1 p-1">
+        <%= f.submit '検索', class: 'btn btn-primary' %>
+      </div>
+      <div class="col-md-2 p-1">
+        <%= link_to '全件表示', job_index_reward_index_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="p-2">
+  <%= link_to "新規作成", new_reward_path, class: "btn btn-primary" %>
+</div>
+<div id="reward-list">
+  <%= render partial: "type_list", locals: { contents: @contents } %>
+</div>

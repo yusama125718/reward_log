@@ -12,6 +12,10 @@ ja:
               required: を入力して下さい
             job:
               required: を入力して下さい
+        display:
+          attributes:
+            display_type:
+              required: を入力して下さい
     attributes:
       user:
         name: ログインID
@@ -21,9 +25,11 @@ ja:
         password_confirmation: パスワード確認
       job:
         name: 仕事名
+        note: メモ
       content_type:
         name: 種別名
         state: 作業中
+        note: メモ
       reward_content:
         title: タイトル
         job: 仕事名
@@ -31,3 +37,17 @@ ja:
         amount: 支払額
         worker: 支払先
         confirm_date: 処理日
+        note: メモ
+      display_type:
+        name: ディスプレイ名
+        permission: 権限
+        target_path: 送信先パス
+        note: メモ
+      display:
+        option: オプション
+        display_type: ディスプレイ種別
+        time: 表示時間
+        note: メモ
+        sort: ソート
+        filetype: ファイル形式ßß
+        filename: ファイル名

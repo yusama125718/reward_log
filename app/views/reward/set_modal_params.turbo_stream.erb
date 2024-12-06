@@ -11,5 +11,5 @@
     </div>
   <% end %>
 <% end %>
-<%= turbo_stream_action_tag "set_modal_value", target: "#{@target}_id", value: @object.try(:id) || "" %>
+<%= turbo_stream_action_tag "set_reward_modal_value", target: "#{@target}_id", value: @object.try(:id) || "" %>
 <%= turbo_stream_action_tag "close_modal" %>
